@@ -1,0 +1,65 @@
+body{
+    background-color: darkcyan;
+    margin: 0;
+}
+
+
+.header{
+    height: 300px;
+    background-image: url('/assets/imagenes/zodiaco.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+.titulo{
+    color: white;    
+}
+
+.input_fecha{
+    width: 60px;
+    border-radius: 5px;
+}
+
+.card{
+    width: 18rem;
+    margin: 10px;
+}
+
+.sku{
+    display: inline-block;
+    font-size: 10px;
+    color: darkgray;
+}
+
+.signo{
+    display: inline-block;
+}
+
+.carrito{
+    position: relative;
+    opacity: 1;
+    padding: 10px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 28px #38383881;
+    max-width: 40%;
+    height: 100vh;
+    background-color: white;
+
+}
+
+.popup_flotante{
+    position: relative;
+    opacity: 1;
+    padding: 10px;
+    width: 200px;
+    height: 200px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 5px 5px 28px #38383881;
+}
+
+
+footer{
+    height: 30px;
+    background-color: black;
+}
