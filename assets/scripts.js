@@ -63,7 +63,7 @@ function zodiaco () {
     }
 
     function fechaNacimiento (signo) {
-        Swal.fire(`<h3>Si tu fecha de Nacimiento es ${dia.value} / ${mes.value} / tu signo del Zodiaco es "${signo}"</h3>`)
+        Swal.fire(`<h3>Si tu fecha de Nacimiento es ${dia.value} / ${mes.value} tu signo del Zodiaco es "${signo}"</h3>`)
         
     }
 
@@ -90,9 +90,6 @@ function btn_select () {
 
 //-------------------Zona de Ventas-------------
 
-
-
-
 const contenedor = document.getElementById("contenedorProductos");
 
 function crear_tienda_productos () {
@@ -100,7 +97,7 @@ function crear_tienda_productos () {
     Object.entries(productos).forEach((producto) => {
       
 
-        // Por fin, aquí pude entender de las diferencias al
+        // Cards de producto
         // insertar html desde js
         const cards =  document.createElement('div');
         cards.innerHTML =
@@ -128,6 +125,7 @@ function crear_tienda_productos () {
 let btn_card = document.querySelectorAll('#btnCard');
 
 let carrito = [];
+let contador = 0;
 
 for (btn_listen of btn_card) {
     btn_listen.addEventListener('click', (e) => {
@@ -169,12 +167,13 @@ for (btn_listen of btn_card) {
 
 //Renderizar Carrito
 function renderizar () {
+    contador = 0;
 
     let la_tabla = document.getElementById('tbody_carrito');
     la_tabla.innerHTML = ''; // Con esto limpio el carrito para evitar repetidos
     
     Object.values(carrito).forEach((vuelta) => {
-        
+    contador ++
     let tabla_carro = document.createElement('tr');
     tabla_carro.innerHTML = `
                     <td><img src="${vuelta.imagen}" width="50px">${vuelta.id}</td>
@@ -185,8 +184,8 @@ function renderizar () {
                     ;
     la_tabla.append(tabla_carro);
 
-
     });
+
 };
 
 //Sumar Total
@@ -198,15 +197,14 @@ function sumar_total () {
 },0);
     console.log(total_reduce);
     el_total.innerText = `Total: ${total_reduce}`;
-    el_total.append(total_reduce)
-}
+};
 
 
 //Carrito a local Storage
 function guardar_in_local() {
     let carrito_a_json = JSON.stringify(carrito);
     localStorage.setItem("carrito", carrito_a_json);
-}
+};
 
 
 //carrito Recuperado
@@ -216,17 +214,26 @@ let carrito_recuperado = JSON.parse(carrito_guardado);
 //Botón Vaciar Carrito
 const botonVaciar = document.getElementById('btn_vaciar');
 botonVaciar.addEventListener('click', btn_vaciar);
-function btn_vaciar() {
 
-    console.log('vaciar');
+function btn_vaciar() {
     carrito.splice(0, carrito.length);
     renderizar();
-}
-    /* let btn_elim = document.getElementById('btn_eliminar');
-    let btn_elim_cant = [btn_elim.parentNode];
-    let btn_elim_id = [btn_elim.parentElement.parentElement];
-    console.log(btn_elim_id);
-    console.log() */
+    sumar_total();
+};
 
+// Ocultar el div al cargar la página
+$(document).ready(function(){
+    $(".seccion_carrito").hide();
+  
+    // Botón para mostrar y ocultar el div
+    $("#boton_mostrar_carrito").click(function(){
+      $(".seccion_carrito").fadeToggle();
+      console.log('boton culiao');
+      $("#boton_contador").text(`${contador}`);
+    });
+  });
+
+
+  
 
 
