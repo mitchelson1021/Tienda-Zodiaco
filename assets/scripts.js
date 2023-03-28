@@ -151,15 +151,17 @@ for (btn_listen of btn_card) {
                 precio: precio_carrito,
     
             });
+            guardar_in_local();
 
         }else {
             comparar.cantidad ++ ;
             comparar.precio = comparar.cantidad * precio_carrito;
         }
         
-        console.log(carrito);
+        console.log(carrito_recuperado);
         renderizar();
         sumar_total();
+        guardar_in_local();
 
     });
 
@@ -200,7 +202,16 @@ function sumar_total () {
 }
 
 
+//Carrito a local Storage
+function guardar_in_local() {
+    let carrito_a_json = JSON.stringify(carrito);
+    localStorage.setItem("carrito", carrito_a_json);
+}
 
+
+//carrito Recuperado
+let carrito_guardado = localStorage.getItem("carrito");
+let carrito_recuperado = JSON.parse(carrito_guardado);
 
 //Botón Vaciar Carrito
 const botonVaciar = document.getElementById('btn_vaciar');
