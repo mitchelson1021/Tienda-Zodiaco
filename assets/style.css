@@ -30,7 +30,9 @@ body{
     font-size: 10px;
     color: darkgray;
 }
-
+.sku_invis{
+    display: none;
+}
 .signo{
     display: inline-block;
 }

@@ -63,11 +63,16 @@ function zodiaco () {
     }
 
     function fechaNacimiento (signo) {
-        mensaje.innerHTML = `<h3>Si tu fecha de Nacimiento es ${dia.value} / ${mes.value} / ${año.value}  tu signo del Zodiaco es "${signo}"</h3>`  
+        Swal.fire(`<h3>Si tu fecha de Nacimiento es ${dia.value} / ${mes.value} / tu signo del Zodiaco es "${signo}"</h3>`)
+        
     }
 
     function error () {
-        mensaje.innerHTML = '<h3>Hubo un error al ingresar los datos, intenta de nuevo</h3>';
+        Swal.fire({
+            icon: 'error',
+            title: 'Hubo un error al ingresar los datos',
+            text: 'intenta de nuevo',
+          })
     }
 
 }
@@ -135,7 +140,7 @@ for (btn_listen of btn_card) {
         let cantidad_carrito = 1;
         
         
-        let comparar = carrito.find(item => item.id == id_carrito)
+        let comparar = carrito.find(item => item.id === id_carrito)
         if (comparar === undefined) {
 
             carrito.push({
@@ -154,7 +159,7 @@ for (btn_listen of btn_card) {
         
         console.log(carrito);
         renderizar();
-
+        sumar_total();
 
     });
 
@@ -170,27 +175,47 @@ function renderizar () {
         
     let tabla_carro = document.createElement('tr');
     tabla_carro.innerHTML = `
-                    <td><img src="${vuelta.imagen}" width="50px"></td>
+                    <td><img src="${vuelta.imagen}" width="50px">${vuelta.id}</td>
                     <td>${vuelta.cantidad}</td>
                     <td>${vuelta.nombre}</td>
-                    <td>${vuelta.precio}</td>
-                    <td><button onclick="btn_eliminar()" type="button" class="btn btn-danger">X</button></td>
-                    `;
+                    <td>${vuelta.precio}</td>`
+                    {/* <td><button id="btn_eliminar" onclick="btn_eliminar()" type="button" class="btn btn-danger">X</button></td> */}
+                    ;
     la_tabla.append(tabla_carro);
-    
+
 
     });
 };
 
-function btn_eliminar() {
-    for (const eliminar of btn_card) {
-        eliminar.addEventListener('click', (e) => {
-            let cantidad_bajar = e.target
-            console.log(cantidad_bajar)
-        } )
-    }
-    console.log(carrito[0].cantidad);
-    carrito.splice(1)
+//Sumar Total
+
+function sumar_total () {
+    const el_total = document.getElementById('total');
+    let total_reduce = carrito.reduce((total, valor) => {
+    return total + valor.precio;
+},0);
+    console.log(total_reduce);
+    el_total.innerText = `Total: ${total_reduce}`;
+    el_total.append(total_reduce)
 }
+
+
+
+
+//Botón Vaciar Carrito
+const botonVaciar = document.getElementById('btn_vaciar');
+botonVaciar.addEventListener('click', btn_vaciar);
+function btn_vaciar() {
+
+    console.log('vaciar');
+    carrito.splice(0, carrito.length);
+    renderizar();
+}
+    /* let btn_elim = document.getElementById('btn_eliminar');
+    let btn_elim_cant = [btn_elim.parentNode];
+    let btn_elim_id = [btn_elim.parentElement.parentElement];
+    console.log(btn_elim_id);
+    console.log() */
+
 
 
