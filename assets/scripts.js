@@ -107,7 +107,8 @@ function crear_tienda_productos () {
         <div class="card text-center">
         <img id="imgProduct" src="${producto[1].imagen}" class="card-img-top" alt="...">
         <div id="cardTitle" class="card-body">
-            <h5 class="card-title">${producto[1].nombre}</h5>
+            <h3 class="card-title">${producto[1].nombre}</h3>
+            <h5 class="card-title">Para ${producto[1].signo}</h5>
             <p id="description">${producto[1].descripcion}</p>
             <p class="sku">SKU:</p><p class="sku">${producto[1].id}</p>
             <h6 id="cardPrice" class="card-text"><h6 class="signo">$</h6>${producto[1].precio}</h6><br>
@@ -132,9 +133,9 @@ for (btn_listen of btn_card) {
         
         
         let imagen_carrito = e.target.parentNode.parentNode.childNodes[1].src;
-        let id_carrito = parseInt(e.target.parentNode.childNodes[6].textContent);
+        let id_carrito = parseInt(e.target.parentNode.childNodes[8].textContent);
         let nombre_carrito = e.target.parentNode.childNodes[1].textContent;
-        let precio_carrito = parseInt(e.target.parentNode.childNodes[10].textContent);
+        let precio_carrito = parseInt(e.target.parentNode.childNodes[12].textContent);
         let cantidad_carrito = 1;
         
         
@@ -176,7 +177,7 @@ function renderizar () {
     contador ++
     let tabla_carro = document.createElement('tr');
     tabla_carro.innerHTML = `
-                    <td><img src="${vuelta.imagen}" width="50px">${vuelta.id}</td>
+                    <td><img src="${vuelta.imagen}" width="50px"><p>${vuelta.id}</p></td>
                     <td>${vuelta.cantidad}</td>
                     <td>${vuelta.nombre}</td>
                     <td>${vuelta.precio}</td>`

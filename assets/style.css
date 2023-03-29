@@ -58,6 +58,10 @@ body{
 .signo{
     display: inline-block;
 }
+.tienda {
+    padding: 5% 5%;
+}
+
 
 .seccion_carrito {
     position: absolute;
@@ -77,9 +81,12 @@ body{
     padding: 10px;
     border-radius: 10px;
     box-shadow: 5px 5px 28px #38383881;
-    max-width: 40%;
-    height: 100vh;
+    min-width: 40%;
     background-color: white;
+}
+
+#tbody_carrito p{
+    display: none;
 }
 
 .contador {
