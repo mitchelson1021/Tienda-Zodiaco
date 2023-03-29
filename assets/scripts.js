@@ -161,6 +161,8 @@ for (btn_listen of btn_card) {
         renderizar();
         sumar_total();
         guardar_in_local();
+        popup_carrito();
+        $("#boton_contador").text(`${contador}`);
 
     });
 
@@ -189,7 +191,7 @@ function renderizar () {
 
 };
 
-//Sumar Total
+//Sumar Total precio productos del carrito
 
 function sumar_total () {
     const el_total = document.getElementById('total');
@@ -222,18 +224,41 @@ function btn_vaciar() {
     sumar_total();
 };
 
-// Ocultar el div al cargar la página
+// Ocultar el carrito al cargar la página (Jquery)
 $(document).ready(function(){
     $(".seccion_carrito").hide();
   
-    // Botón para mostrar y ocultar el div
+    // Botón para mostrar y ocultar el carrito
     $("#boton_mostrar_carrito").click(function(){
       $(".seccion_carrito").fadeToggle();
-      console.log('boton culiao');
+
       $("#boton_contador").text(`${contador}`);
     });
   });
 
+$('.btn_cerrar_carrito').click(function () {
+    $(".seccion_carrito").fadeToggle();
+})
+
+  //Popup Carrito
+  function popup_carrito() {
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      
+      Toast.fire({
+        icon: 'success',
+        title: 'Producto agregado al carrito'
+      })
+  }
 
   
 

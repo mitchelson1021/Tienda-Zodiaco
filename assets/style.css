@@ -110,7 +110,17 @@ body{
     
 }
 
+.btn_cerrar_carrito {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: black;
+    color: white;
+    border: 3px solid gray;
+    box-shadow: 5px 5px 18px black;
 
+}
 
 
 footer{
